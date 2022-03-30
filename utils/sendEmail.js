@@ -3,6 +3,7 @@ let transporter = nodemailer.createTransport({
   service: "qq",
   port: 465,
   secureConnection: true,
+  tls: {rejectUnauthorized: false},
   auth: {
     user: "wave.wu@qq.com",
     pass: "cqdgknfdvxsoeafj",
