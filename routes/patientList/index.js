@@ -9,10 +9,10 @@ router.post('/diagnosedcaselist', (req, res) => {
   if (req.query.name) {
     findQuery = {
       $or: [{
-          patientName: req.query.name
+          patientName: {$regex: req.query.name}
         },
         {
-          inspectionDoctor: req.query.name
+          inspectionDoctor: {$regex: req.query.name}
         }
       ]
     }
@@ -22,7 +22,7 @@ router.post('/diagnosedcaselist', (req, res) => {
       patientAge: req.query.ageSort,
       inspectionDate: req.query.dateSort
     }).exec((err, data) => {
-      diagnosedCaseList.count((err, total) => {
+      diagnosedCaseList.find(findQuery).count((err, total) => {
         res.send({
           data,
           total
@@ -36,10 +36,10 @@ router.post('/notdiagnosedcaselist', (req, res) => {
   if (req.query.name) {
     findQuery = {
       $or: [{
-          patientName: req.query.name
+          patientName:{$regex: req.query.name}
         },
         {
-          inspectionDoctor: req.query.name
+          inspectionDoctor:{$regex: req.query.name}
         }
       ]
     }
@@ -49,7 +49,7 @@ router.post('/notdiagnosedcaselist', (req, res) => {
       patientAge: req.query.ageSort,
       inspectionDate: req.query.dateSort
     }).exec((err, data) => {
-      notDiagnosedCaseList.count((err, total) => {
+      notDiagnosedCaseList.find(findQuery).count((err, total) => {
         res.send({
           data,
           total
