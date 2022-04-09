@@ -50,13 +50,13 @@ for (let i = 0; i < 500; i++) {
     patientName: `${xing[j]}${xing[k]}`,
     patientSex: i % 2 === 0 ? '女' : '男',
     patientAge: 20 + a,  
+    hospital: '赣南医学院第一附属医院',
     nationality: "中国",
     nation: "汉",
-    nativePlace: `${sheng[z]}xxx市xxx县xxx镇`,
+    inspectionDoctor: `${xing[j1]}${xing[k1]}`,
     inspectionDate: Date.now() - 31536000000 * p,
     patientBirthDate: Date.now() - (20 + a) * 31536000000,
-    inspectionDoctor: `${xing[j1]}${xing[k1]}`,
- 
+    nativePlace: `${sheng[z]}xxx市xxx县xxx镇`,
   })
 }
 }

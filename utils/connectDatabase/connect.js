@@ -12,21 +12,26 @@ const doctorList = mongoose.model('doctor_accounts', mongoose.Schema({
   email: String,
   passWord: String,
   doctorName: String,
+  gender: String,
+  age: String,
+  hospital: String,
   phoneNum: String,
-  title: String
+  title: String,
+  hospital_logo: String,
 }));
 
 const diagnosedCaseList = mongoose.model('diagnosed_case_lists', mongoose.Schema({
   inspectionNum: String,
   patientName: String,
   patientSex: String,
-  patientAge: Number,
-  nation: String,
+  patientAge: String,
+  hospital: String,
   nationality: String,
+  nation: String,
+  inspectionDoctor: String,
+  inspectionDate: String,
+  patientBirthDate: String,
   nativePlace: String,
-  inspectionDate: Date,
-  patientBirthDate: Date,
-  inspectionDoctor: String
 },{versionKey: false}));
 
 
@@ -34,18 +39,27 @@ const notDiagnosedCaseList = mongoose.model('not_diagnosed_case_lists', mongoose
   inspectionNum: String,
   patientName: String,
   patientSex: String,
-  patientAge: Number,
+  patientAge: String,
+  hospital: String,
   nationality: String,
   nation: String,
+  inspectionDoctor: String,
+  inspectionDate: String,
+  patientBirthDate: String,
   nativePlace: String,
-  inspectionDate: Date,
-  patientBirthDate: Date,
-  inspectionDoctor: String
 },{versionKey: false}));
 
-// inset(diagnosedCaseList);
+const diagnostic_details = mongoose.model('diagnostic_details', mongoose.Schema({
+  inspectionNum: String,
+  image_list: Array,
+  ultrasonic_diagnosis: String,
+  ultrasonic_findings: String
+},{versionKey: false}));
+
+// inset(notDiagnosedCaseList);
 module.exports = {
   doctorList,
   diagnosedCaseList,
-  notDiagnosedCaseList
+  notDiagnosedCaseList,
+  diagnostic_details
 };
