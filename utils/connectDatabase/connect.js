@@ -56,10 +56,18 @@ const diagnostic_details = mongoose.model('diagnostic_details', mongoose.Schema(
   ultrasonic_findings: String
 },{versionKey: false}));
 
+const china_regions = mongoose.model('china_regions', mongoose.Schema({
+  code: String,
+  name : String,
+  province: String,
+  children: Array,
+}));
+
 // inset(notDiagnosedCaseList);
 module.exports = {
   doctorList,
   diagnosedCaseList,
   notDiagnosedCaseList,
-  diagnostic_details
+  diagnostic_details,
+  china_regions
 };
