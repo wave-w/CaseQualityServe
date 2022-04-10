@@ -63,11 +63,24 @@ const china_regions = mongoose.model('china_regions', mongoose.Schema({
   children: Array,
 }));
 
+const countries = mongoose.model('countries', mongoose.Schema({
+  id: String,
+  continent_id: String,
+  code: String,
+  name: String,
+  full_name: String,
+  cname: String,
+  country_name: String,
+  lower_name: String,
+  remark: String
+}));
+
 // inset(notDiagnosedCaseList);
 module.exports = {
   doctorList,
   diagnosedCaseList,
   notDiagnosedCaseList,
   diagnostic_details,
-  china_regions
+  china_regions,
+  countries
 };
