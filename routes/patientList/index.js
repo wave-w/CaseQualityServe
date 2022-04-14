@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const {
-  diagnosedCaseList, notDiagnosedCaseList
+  diagnosedCaseList, notDiagnosedCaseList, diagnostic_details
 } = require("../../utils/connectDatabase/connect");
 
 router.post('/diagnosedcaselist', (req, res) => {
@@ -61,9 +61,25 @@ router.post('/notdiagnosedcaselist', (req, res) => {
 
 router.post('/diagnosedPatientDetail', (req, res) => {
   diagnosedCaseList.find({inspectionNum: req.query.id},(err, data) => {
-    console.log(req.query.id);
-    console.log(data);
-    res.send({data})
+    diagnostic_details.find({ inspectionNum: req.query.id }, (detailerr, detail) => {
+      let reaData = {
+        inspectionNum: data[0].inspectionNum,
+        patientName: data[0].patientName,
+        patientSex: data[0].patientSex,
+        patientAge: data[0].patientAge,
+        hospital: data[0].hospital,
+        nationality: data[0].nationality,
+        nation: data[0].nation,
+        inspectionDoctor: data[0].inspectionDoctor,
+        inspectionDate: data[0].inspectionDate,
+        patientBirthDate: data[0].patientBirthDate,
+        nativePlace: data[0].nativePlace,
+        image_list: detail[0].image_list,
+        ultrasonic_diagnosis: detail[0].ultrasonic_diagnosis,
+        ultrasonic_findings: detail[0].ultrasonic_findings
+      };
+      res.send(reaData);
+    })
   })
 });
 module.exports = router;
