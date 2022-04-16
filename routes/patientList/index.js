@@ -59,9 +59,10 @@ router.post('/notdiagnosedcaselist', (req, res) => {
 });
 
 
-router.post('/diagnosedPatientDetail', (req, res) => {
-  diagnosedCaseList.find({inspectionNum: req.query.id},(err, data) => {
-    diagnostic_details.find({ inspectionNum: req.query.id }, (detailerr, detail) => {
+router.post('/diagnosedPatientDetail', (req, res) => {  
+  const listDatabase = { diagnosedCaseList, notDiagnosedCaseList }
+  diagnostic_details.find({ inspectionNum: req.query.id }, (detailerr, detail) => { 
+    listDatabase[req.query.type].find({inspectionNum: req.query.id},(err, data) => {
       let reaData = {
         inspectionNum: data[0].inspectionNum,
         patientName: data[0].patientName,
