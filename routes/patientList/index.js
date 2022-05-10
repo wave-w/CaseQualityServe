@@ -83,4 +83,22 @@ router.post('/diagnosedPatientDetail', (req, res) => {
     })
   })
 });
+
+router.post('/updateUltrasonic', (req, res) => {
+  diagnostic_details.updateOne({inspectionNum: req.query.inspectionNum },{
+    $set:{
+      ultrasonic_diagnosis: req.query.ultrasonicDiagnosis,
+      ultrasonic_findings: req.query.ultrasonicDindings
+    }
+  }).then(updateRes => {
+    let success = true;
+    if (!updateRes.acknowledged){
+      success = false
+    }
+    res.send({
+      success
+    })
+  });
+})
+
 module.exports = router;
